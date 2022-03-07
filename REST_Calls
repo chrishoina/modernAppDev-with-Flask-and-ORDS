@@ -1,0 +1,11 @@
+curl --location \
+'https://bqj5jpf7pvxppq5-adb21.adb.eu-frankfurt-1.oraclecloudapps.com/ords/admin/customers/' 
+
+curl --location --request PUT \
+'https://bqj5jpf7pvxppq5-adb21.adb.eu-frankfurt-1.oraclecloudapps.com/ords/admin/customers/<VALUE>' \
+--header 'Content-Type: application/json' \
+--data-binary '{
+  "customer_id": "<VALUE>",
+  "email_address": "<VALUE>",
+  "full_name": "<VALUE>"
+}'

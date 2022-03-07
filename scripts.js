@@ -35,19 +35,13 @@ const app = Vue.createApp({
     })
     .then(response => response.json())
     .then(data => {
-        this.info = data.count;
         this.customers = data.items;
-
         console.log(data.items);
-
       })
-  
-
         .catch(err => {
             console.log(err);
-        });
-
-}
+            });
+        }
     }
 
 })

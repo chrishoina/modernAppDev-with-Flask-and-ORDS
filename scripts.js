@@ -10,7 +10,7 @@ const app = Vue.createApp({
     },
 
     mounted:function(){
-        this.fetchAPIData() //method1 will execute at pageload
+        this.fetchAPIData()
     },
 
     methods: {
@@ -37,9 +37,9 @@ const app = Vue.createApp({
     .then(data => {
         this.info = data.count;
         this.customers = data.items;
-        /* eslint-disable no-console */
+
         console.log(data.items);
-        /* eslint-disable no-console */
+
       })
   
 

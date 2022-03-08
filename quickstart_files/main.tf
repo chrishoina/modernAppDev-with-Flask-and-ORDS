@@ -67,7 +67,6 @@ resource "null_resource" "sqlcl-load-data" {
                 wget https://download.oracle.com/otn_software/java/sqldeveloper/sqlcl-latest.zip
                 unzip sqlcl-latest.zip
                 sed -i 's/NEW_PASSWORD/${random_string.password.result}/g' ./db_scripts/new_password.sql
-                cat ./db_scripts/new_password.sql
                 ./sqlcl/bin/sql -cloudconfig wallet.zip admin/${random_string.password.result}@QUIKDB_high @./db_scripts/quickstart.sql
             EOT
         }

@@ -38,13 +38,17 @@
 
     outputs:
 
-
       rest_get_url:
         title: "Employee GET REST URL"
         displayText: "Employee GET REST URL"
         type: string
         visible: true
 
+      sdw_url:
+        title: "SQL Developer Web URL"
+        displayText: "SQL Developer Web URL"
+        type: string
+        visible: true
 
       adb_password:
         title: "ADB Password"

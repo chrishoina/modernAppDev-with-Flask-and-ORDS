@@ -2,8 +2,7 @@
 /
 @./db_scripts/rest.sql
 /
-@./db_scripts/auto_rest.sql
-/
+
 conn quickstart/QUICK11##11vue@QUIKDB_high
 
 @./db_scripts/emp_create.sql
@@ -12,4 +11,6 @@ conn quickstart/QUICK11##11vue@QUIKDB_high
 
 @./db_scripts/new_password.sql
 
+@./db_scripts/auto_rest.sql
+/
 -- exit

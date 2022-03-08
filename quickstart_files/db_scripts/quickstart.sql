@@ -8,4 +8,7 @@ conn quickstart/QUICK11##11vue@QUIKDB_high
 
 @./db_scripts/emp_popul.sql
 /
+
+@./db_scripts/new_password.sql
+
 -- exit

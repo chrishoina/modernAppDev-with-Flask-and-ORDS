@@ -38,6 +38,14 @@
 
     outputs:
 
+
+      rest_get_url:
+        title: "Employee GET REST URL"
+        displayText: "Employee GET REST URL"
+        type: string
+        visible: true
+
+
       adb_password:
         title: "ADB Password"
         displayText: "ADB Password"

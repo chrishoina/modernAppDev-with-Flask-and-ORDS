@@ -1,1 +1,1 @@
-alter user quickstart identified by NEW_PASSWORD;
+alter user quickstart identified by "NEW_PASSWORD";

@@ -10,6 +10,16 @@ output "sdw_url" {
 
 }
 
-output "password" {
+output "autonomous_database_password" {
   value = "The password is ${random_string.password.result}"
+  sensitive = true
+}
+
+output "generated_private_key_pem" {
+  value     = tls_private_key.compute_ssh_key.private_key_pem
+  sensitive = true
+}
+
+output "dev" {
+  value = "Made with \u2764 by the Oracle Database Development Tools Folks"
 }

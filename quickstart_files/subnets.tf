@@ -11,7 +11,7 @@ resource "oci_core_subnet" "public_subnet" {
   dhcp_options_id   = oci_core_virtual_network.vcn.default_dhcp_options_id
   route_table_id    = oci_core_route_table.public-routetable.id
   security_list_ids = [oci_core_security_list.public-security-list.id]
-  dns_label         = "public_subnet"
+  dns_label         = "publicsubnet"
 
   provisioner "local-exec" {
     command = "sleep 5"
@@ -25,7 +25,7 @@ resource "oci_core_subnet" "private_subnet" {
   vcn_id            = oci_core_virtual_network.vcn.id
   dhcp_options_id   = oci_core_virtual_network.vcn.default_dhcp_options_id
 #  route_table_id    = oci_core_route_table.default.id
-  dns_label         = "private_subnet"
+  dns_label         = "privatesubnet"
   provisioner "local-exec" {
     command = "sleep 5"
   }

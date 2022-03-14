@@ -3,11 +3,9 @@
 
 # This Terraform script provisions a compute instance, instance configuration, instance pool and autoscaling config.
 
-data "template_file" "key_script" {
-  template = file("./scripts/sshkey.tpl")
-  vars = {
-    ssh_public_key = tls_private_key.public_private_key_pair.public_key_openssh
-  }
+resource "tls_private_key" "compute_ssh_key" {
+  algorithm = "RSA"
+  rsa_bits  = 2048
 }
 
 # Create Compute Instance
@@ -42,8 +40,8 @@ resource "oci_core_instance" "compute_instance1" {
   }
 
   metadata = {
-    ssh_authorized_keys = var.ssh_public_key
-#    user_data = data.template_cloudinit_config.cloud_init.rendered
+    ssh_authorized_keys = tls_private_key.compute_ssh_key.public_key_openssh
+    #user_data = data.template_cloudinit_config.cloud_init.rendered
   }
 
   timeouts {

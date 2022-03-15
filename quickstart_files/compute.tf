@@ -48,3 +48,18 @@ resource "oci_core_instance" "compute_instance1" {
     create = "60m"
   }
 }
+
+resource "oci_vault_secret" "demo_ssh_keys" {
+    #Required
+    compartment_id = var.compartment_ocid
+    secret_content {
+        #Required
+        content_type = "BASE64"
+
+        #Optional
+        content = "${base64encode(tls_private_key.compute_ssh_key.private_key_pem)}"
+    }
+    key_id = oci_kms_key.demo_key.id
+    secret_name = "quickstartSSHKeys"
+    vault_id = oci_kms_vault.demo_vault.id
+}

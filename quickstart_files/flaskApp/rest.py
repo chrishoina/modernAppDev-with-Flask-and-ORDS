@@ -26,7 +26,7 @@ def mypage():
         return list_of_jobs
 
     list_of_jobs = getJobs()
-    return render_template('jobs.html', list_ip_mac=list_of_jobs)
+    return render_template('home.html', list_ip_mac=list_of_jobs)
 
 @app.route('/form') 
 def student():

@@ -4,9 +4,12 @@ resource "oci_load_balancer_load_balancer" "webapp_load_balancer" {
 
     compartment_id = var.compartment_ocid
     display_name = "webApp_LB1"
-    shape = "10Mbps-Micro"
+    shape = "flexible"
     subnet_ids = [oci_core_subnet.public_subnet.id]
-
+    shape_details {
+        minimum_bandwidth_in_mbps = 10
+        maximum_bandwidth_in_mbps = 10
+    }
 
 }
 
@@ -21,13 +24,13 @@ resource "oci_load_balancer_backend_set" "webapp_backend_set" {
         interval_ms = "10000"
         port = "5000"
         retries = "3"
-        return_code = "302"
+        return_code = "200"
         timeout_in_millis = "3000"
         url_path = "/"
 
     }
     load_balancer_id = oci_load_balancer_load_balancer.webapp_load_balancer.id
-    name = "webapp_backendset_ssl"
+    name = "webapp_backendset"
     policy = "ROUND_ROBIN"
 
 }
@@ -53,7 +56,7 @@ resource "oci_load_balancer_listener" "webapp_listener" {
 resource "oci_load_balancer_backend" "webapp_backend" {
     #Required
     backendset_name = oci_load_balancer_backend_set.webapp_backend_set.name
-    ip_address = data.oci_core_instance.compute_instance1.private_ip
+    ip_address = oci_core_instance.compute_instance1.private_ip
     load_balancer_id = oci_load_balancer_load_balancer.webapp_load_balancer.id
     port = "5000"
 

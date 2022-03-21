@@ -51,6 +51,7 @@ outputGroups:
       - autonomous_database_password
       - generated_private_key_pem
       - dev
+      - lb_ip
 
 outputs:
     
@@ -70,3 +71,12 @@ outputs:
     title: "Database Password"
     displayText: ${Messages.solutionsHub.solutions.ordsModernAppDev.outputs.autonomousDatabasePasswordDescription()}
     visible: true
+
+  lb_ip:
+
+    title: "Load Balancer IP Address"
+    displayText: ${Messages.solutionsHub.solutions.autoscalingQuickstarts.outputs.loadbalancer_public_url.displayText()}
+    type: string
+    visible: true
+
+primaryOutputButton: loadbalancer_public_url

@@ -4,7 +4,7 @@
 <head>
 
     <title>Python Flask Modern Application Development with ORDS</title>
-
+    <link rel="icon" type="image/x-icon" href="../static/favicon.ico">
     <link href = "../static/style.css" rel = "stylesheet">
 </head>
 
@@ -52,19 +52,19 @@
             <table id=" " width="100%" cellspacing="5">
                 <thead>
                     <tr>
-                        <th> Store ID </th>
-                        <th> Location </th>
+                        <th> Store Name </th>
+                        <th> Location </th>              
                     </tr>
                 </thead>
                 <tbody>
-                    {% for i in list_ip_mac %}
+                    {% for i in lists_stores %}
                         <tr>
                             <td>
-                                {{ i["job_id"] }}
+                                {{ i["store_name"] }}
                             </td>
                             <td>
-                                {{ i["job_title"] }}
-                            </td>
+                                <a href="{{ i["store_latlong"] }}" target="_blank"> {{ i["store_location"] }} </a>
+                            </td>                            
                         </tr>
                     {% endfor %}
                 </tbody>                 

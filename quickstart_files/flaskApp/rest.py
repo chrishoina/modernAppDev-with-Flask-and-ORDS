@@ -4,29 +4,30 @@ app = Flask(__name__)
 
 @app.route('/')
 def mypage():
-    def getJobs():
-        response = requests.get("https://bqj5jpf7pvxppq5-adb21.adb.eu-frankfurt-1.oraclecloudapps.com/ords/admin/jobs/")
-        list_of_jobs = []
+    def getStores():
+        response = requests.get("https://bqj5jpf7pvxppq5-adb21.adb.eu-frankfurt-1.oraclecloudapps.com/ords/gary/stores/")
+        list_of_stores = []
 
-        for jobs in response.json()['items']:
+        for stores in response.json()['items']:
             
-            jobList = dict()
+            storeList = dict()
             try:
-                job_id = jobs['job_id']
-                job_title = jobs['job_title']
+                store_name = stores['store_name']
+                store_location = stores['store_location']
+                store_latlong = stores['store_latlong']
 
-                jobList['job_id'] = job_id
-                jobList['job_title'] = job_title                
-                list_of_jobs.append(jobList)
-                
+                storeList['store_name'] = store_name
+                storeList['store_location'] = store_location                
+                storeList['store_latlong'] = store_latlong                     
+                list_of_stores.append(storeList)           
 
             except:
                 pass
+        print(list_of_stores)
+        return list_of_stores
 
-        return list_of_jobs
-
-    list_of_jobs = getJobs()
-    return render_template('home.html', list_ip_mac=list_of_jobs)
+    list_of_stores = getStores()
+    return render_template('home.html', lists_stores=list_of_stores)
 
 @app.route('/form') 
 def student():

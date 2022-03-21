@@ -5,9 +5,9 @@
 
 conn quickstart/QUICK11##11vue@QUIKDB_high
 
-@./db_scripts/emp_create.sql
+@./db_scripts/order_tables_create.sql
 
-@./db_scripts/emp_popul.sql
+@./db_scripts/order_tables_insert.sql
 
 @./db_scripts/new_password.sql
 

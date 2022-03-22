@@ -8,7 +8,7 @@
         function totalPrice() {
             var quantity = parseFloat(document.getElementById('quantity').value);
             var price = parseFloat(document.getElementById('price').innerHTML);
-            document.getElementById('total').innerHTML = (quantity * price).toFixed(2);
+            document.getElementById('total').value = (quantity * price).toFixed(2);
         }
     
         function getPrice(){
@@ -38,10 +38,10 @@
 
                 <ul class="nav nav-pills">
                     <li class="nav-item">
-                        <a href="/" class="nav-link active" aria-current="page">Order</a>
+                        <a href="/" class="nav-link active" aria-current="page">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a href="/signup" class="nav-link signin">Signup</a>
+                        <a href="/myorders" class="nav-link myorders">My Orders</a>
                     </li>                  
                 </ul>
 
@@ -64,7 +64,7 @@
                     </p>
                     <p>Price: $<span id="price"></span></p> 
                     <p>Quantity: <input type = "number" name = "quantity" id="quantity" onchange="totalPrice()" /></p>                   
-                    <p>Total Price: $<span id="total"></span></p>                               
+                    <p>Total Price: $<input type = "number" name = "total" id="total" readonly/></p>                                              
                     <p><input type = "submit" value = "submit" /></p>
                  </form>
             </div>  

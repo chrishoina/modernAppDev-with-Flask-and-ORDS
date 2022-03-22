@@ -53,43 +53,45 @@ li.nav-item {
 }
 
 .mb-md-0 {
-    margin-bottom: 0 !important;
-  }
-  .me-md-auto {
-    margin-right: auto !important;
-  }
+  margin-bottom: 0 !important;
+}
 
-  .align-items-center {
-    align-items: center !important;
-  }
+.me-md-auto {
+  margin-right: auto !important;
+}
+
+.align-items-center {
+  align-items: center !important;
+}
+
   .d-flex {
-    display: flex !important;
-  }
+  display: flex !important;
+}
 
-  .title {
-    font-size: 1.5rem !important;
-    color: #fff;
-    font-weight: bold;
-    padding-left: 10px;
-  }
+.title {
+  font-size: 1.5rem !important;
+  color: #fff;
+  font-weight: bold;
+  padding-left: 10px;
+}
 
-  *, ::after, ::before {
-    box-sizing: border-box;
-  }
+*, ::after, ::before {
+  box-sizing: border-box;
+}
 
-  .nav {
-    display: flex;
-    flex-wrap: wrap;
-    padding-left: 0;
-    margin-bottom: 0;
-    list-style: none;
-  }
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+}
 
-  dl, ol, ul {
-    margin-top: 0;
-  }
+dl, ol, ul {
+  margin-top: 0;
+}
 
-.nav-pills .nav-link.signin {
+.nav-pills .nav-link.myorders {
 color: #fff;
 background-color: #fd650d;
 margin-right: 1rem;
@@ -186,6 +188,19 @@ th {
     background-color: aliceblue;
 }
 
- td {
-     border: 1px solid black;
- }
+td {
+    border: 1px solid black;
+}
+
+
+/* Chrome, Safari, Edge, Opera */
+#total::-webkit-outer-spin-button,
+#total::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+#total {
+  -moz-appearance: textfield;
+}

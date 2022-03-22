@@ -35,7 +35,7 @@ INSERT INTO stores (
 ) VALUES (
     'Franks Franks Store Number -100',
     'Antartica',
-    'https://www.google.com/maps/place/-74.70435193903103,164.0903735098001'
+    'https://www.google.com/maps/place/-74.69473455507875,164.11426021247422'
 );
 
 INSERT INTO stores (

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <title>My Orders</title>
+    <link rel="icon" type="image/x-icon" href="../static/favicon.ico">
+    <link href = "../static/style.css" rel = "stylesheet">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <header class="header">
+
+            <nav class="d-flex flex-wrap justify-content-center border-bottom">
+                <img src="../static/hotdog.png"/>
+                    <span class="d-flex align-items-center mb-md-0 me-md-auto text-dark text-decoration-none title">Frank's Franks</span>
+
+
+                <ul class="nav nav-pills">
+                    <li class="nav-item">
+                        <a href="/" class="nav-link active" aria-current="page">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/order" class="nav-link myorders">Order</a>
+                    </li>                  
+                </ul>
+
+            </nav>
+
+        </header>
+    </div>
+    <div class="main">
+        <div class="tableholder">
+            <h1 class="bannertext">Your Orders</h1>
+            <table id=" " width="100%" cellspacing="5">
+                <thead>
+                    <tr>
+                        <th> Order ID </th>
+                        <th> Product Name </th>              
+                        <th> Product Description </th>
+                        <th> Quantity </th>         
+                        <th> Total Price </th>  
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in list_of_orders %}
+                        <tr>
+                            <td>
+                                {{ i["order_id"] }}
+                            </td>
+                            <td>
+                                {{ i["product_name"] }}
+                            </td>                       
+                            <td>
+                                {{ i["product_description"] }}
+                            </td>
+                            <td>
+                                {{ i["quantity"] }}
+                            </td>
+                            <td>
+                                {{ i["total_price"] }}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>                 
+            </table>
+        </div>
+</body>
+</html>

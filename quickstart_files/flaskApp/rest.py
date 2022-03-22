@@ -1,5 +1,5 @@
 import requests
-from flask import Flask, json, render_template, request, redirect
+from flask import Flask, json, render_template, request, redirect, jsonify
 app = Flask(__name__)
 
 @app.route('/')
@@ -28,49 +28,54 @@ def mypage():
     list_of_stores = getStores()
     return render_template('home.html', lists_stores=list_of_stores)
 
-@app.route('/form') 
-def student():
-    def getIDs():    
-        response = requests.get("https://bqj5jpf7pvxppq5-adb21.adb.eu-frankfurt-1.oraclecloudapps.com/ords/admin/test/")
-        list_of_id = []
+@app.route('/myorders')
+def myOrders():
+    def getOrders():
+        response = requests.get("https://bqj5jpf7pvxppq5-adb21.adb.eu-frankfurt-1.oraclecloudapps.com/ords/gary/hotdogs/getorders/")
+        list_of_orders = []
 
-        for ids in response.json()['items']:
+        for orders in response.json()['items']:
             
-            idList = dict()
+            ordersList = dict()
             try:
-                id = ids['id']
-                idList['id'] = id
-                list_of_id.append(idList)             
+                order_id = orders['order_id']
+                product_name = orders['product_name']
+                product_description = orders['product_description']
+                quantity = orders['quantity']
+                total_price = orders['total_price']
+
+                ordersList['order_id'] = order_id
+                ordersList['product_name'] = product_name                
+                ordersList['product_description'] = product_description
+                ordersList['quantity'] = quantity                
+                ordersList['total_price'] = total_price
+
+                list_of_orders.append(ordersList)           
 
             except:
                 pass
+        return list_of_orders
 
-        return list_of_id
-
-    list_of_id = getIDs()
-    return render_template('form.html', list_of_id_return=list_of_id)  
+    list_of_orders = getOrders()
+    return render_template('myorders.html', list_of_orders=list_of_orders)
 
 @app.route('/get_price')
 def get_hotdog_price():
-        a = request.args.get('a')
-        response = requests.get("https://bqj5jpf7pvxppq5-adb21.adb.eu-frankfurt-1.oraclecloudapps.com/ords/gary/hotdogs/getprice/"+a)
-        list_of_id = []
+    a = request.args.get('a')
+    url = "https://bqj5jpf7pvxppq5-adb21.adb.eu-frankfurt-1.oraclecloudapps.com/ords/gary/hotdogs/getprice/"+a
+    print(url)
+    response = requests.get(url)
 
-        for ids in response.json()['items']:
-            
-            idList = dict()
-            try:
-                product_price = ids['product_price']
-                idList['product_price'] = product_price
-                list_of_id.append(idList)             
+    for ids in response.json()['items']:
+        
+        idList = dict()
+        try:
+            product_price = ids['product_price']       
 
-            except:
-                pass
+        except:
+            pass
 
-        return list_of_id
-
-    list_of_id = get_hotdog_price()
-    return jsonify(list_of_id) 
+    return jsonify(product_price)
 
 @app.route('/order') 
 def order():
@@ -103,14 +108,17 @@ def order():
 
 @app.route('/result', methods = ['POST', 'GET'])    
 def result():
-   url = "https://bqj5jpf7pvxppq5-adb21.adb.eu-frankfurt-1.oraclecloudapps.com/ords/admin/test/"
+   url = "https://bqj5jpf7pvxppq5-adb21.adb.eu-frankfurt-1.oraclecloudapps.com/ords/gary/hotdogs/createorder/"
    if request.method == 'POST':
-        id = request.form.get('id')
-        json_data = { "id":id}
+        product_id = request.form.get('product_id')
+        quantity = request.form.get('quantity')
+        total = request.form.get('total')
+
+        json_data = { "PRODUCT_ID": product_id, "QUANTITY": quantity, "TOTAL_PRICE": total }
     
         headers = {'Content-type':'application/json', 'Accept':'application/json'}
         response = requests.post(url, json=json_data, headers=headers)
-        return redirect('form')
+        return redirect('myorders')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True)

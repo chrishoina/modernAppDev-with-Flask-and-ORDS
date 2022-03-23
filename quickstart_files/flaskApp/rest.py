@@ -5,7 +5,7 @@ app = Flask(__name__)
 @app.route('/')
 def mypage():
     def getStores():
-        response = requests.get("https://bqj5jpf7pvxppq5-adb21.adb.eu-frankfurt-1.oraclecloudapps.com/ords/gary/stores/")
+        response = requests.get("<ADB_URL>/ords/quickstart/stores/")
         list_of_stores = []
 
         for stores in response.json()['items']:
@@ -31,7 +31,7 @@ def mypage():
 @app.route('/myorders')
 def myOrders():
     def getOrders():
-        response = requests.get("https://bqj5jpf7pvxppq5-adb21.adb.eu-frankfurt-1.oraclecloudapps.com/ords/gary/hotdogs/getorders/")
+        response = requests.get("<ADB_URL>/ords/quickstart/hotdogs/getorders/")
         list_of_orders = []
 
         for orders in response.json()['items']:
@@ -62,7 +62,7 @@ def myOrders():
 @app.route('/get_price')
 def get_hotdog_price():
     a = request.args.get('a')
-    url = "https://bqj5jpf7pvxppq5-adb21.adb.eu-frankfurt-1.oraclecloudapps.com/ords/gary/hotdogs/getprice/"+a
+    url = "https://<ADB_URL>/ords/quickstart/hotdogs/getprice/"+a
     print(url)
     response = requests.get(url)
 
@@ -80,7 +80,7 @@ def get_hotdog_price():
 @app.route('/order') 
 def order():
     def getHotDogs():    
-        response = requests.get("https://bqj5jpf7pvxppq5-adb21.adb.eu-frankfurt-1.oraclecloudapps.com/ords/gary/products/")
+        response = requests.get("<ADB_URL>/ords/quickstart/products/")
         list_of_hotdogs = []
 
         for hotdogs in response.json()['items']:
@@ -108,7 +108,7 @@ def order():
 
 @app.route('/result', methods = ['POST', 'GET'])    
 def result():
-   url = "https://bqj5jpf7pvxppq5-adb21.adb.eu-frankfurt-1.oraclecloudapps.com/ords/gary/hotdogs/createorder/"
+   url = "<ADB_URL>/ords/quickstart/hotdogs/createorder/"
    if request.method == 'POST':
         product_id = request.form.get('product_id')
         quantity = request.form.get('quantity')

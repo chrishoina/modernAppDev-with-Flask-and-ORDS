@@ -52,20 +52,20 @@
     <div class="main">
         <div class="topbox">
             <h1 class="bannertext">Hotdog Order Form</h1>
-            <div>
+            <div class="myform">
                 <form action = "/result" method = "POST">
-                    <p>Hotdog:                    
-                        <select name="product_id" id="product_id" method="GET" action="/" onchange="getPrice()">
+                    <p class="header1"> Hotdog:                    
+                        <select class="styleput" name="product_id" id="product_id" method="GET" action="/" onchange="getPrice()">
                             <option value="" selected>-- Choose Hotdog --</option>
                             {% for i in list_of_hotdogs_return %}
                                 <option value="{{ i["product_id"] }}">{{ i["product_name"] }}</option>
                             {% endfor %}
                         </select>
                     </p>
-                    <p>Price: $<span id="price"></span></p> 
-                    <p>Quantity: <input type = "number" name = "quantity" id="quantity" onchange="totalPrice()" /></p>                   
-                    <p>Total Price: $<input type = "number" name = "total" id="total" readonly/></p>                                              
-                    <p><input type = "submit" value = "submit" /></p>
+                    <p class="header1">Price: $<span id="price"></span></p> 
+                    <p class="header1">Quantity: <input class="styleput" type = "number" name = "quantity" id="quantity" onchange="totalPrice()" /></p>                   
+                    <p class="header1">Total Price: $<input class="styleput" type = "number" name = "total" id="total" readonly/></p>                                              
+                    <p><input class="stylebut" type = "submit" value = "Place Order" /></p>
                  </form>
             </div>  
         </div>

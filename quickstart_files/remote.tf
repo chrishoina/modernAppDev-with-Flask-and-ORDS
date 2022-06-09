@@ -39,7 +39,12 @@ resource "null_resource" "compute-script1" {
     "sudo dnf install oracle-instantclient-basic -y",
     "sudo firewall-cmd --permanent --zone=public --add-port=5000/tcp",
     "sudo firewall-cmd --reload",
-    "unzip /home/opc/flaskApp.zip"]
+    "unzip /home/opc/flaskApp.zip",
+    "ENDPOINT_URL=$(echo ${oci_database_autonomous_database.quickstart_autonomous_database.connection_urls.0.sql_dev_web_url} | cut -d / -f 3 )",
+    "echo $ENDPOINT_URL",
+    "cd flaskApp",
+    "sed -i 's/ENDPOINT_URL/'$ENDPOINT_URL'/g' ./rest.py",
+    "nohup python3 rest.py & disown"]
   }
 
   depends_on = [oci_core_instance.compute_instance1,

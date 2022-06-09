@@ -1,14 +1,21 @@
 output "rest_get_url" {
 
-  value = replace("${oci_database_autonomous_database.quickstart_autonomous_database.connection_urls.0.sql_dev_web_url}quickstart/employees/","sql-developer","")
+  value = replace("${oci_database_autonomous_database.quickstart_autonomous_database.connection_urls.0.sql_dev_web_url}admin/notes/","sql-developer","")
 
 }
 
 output "sdw_url" {
 
-  value = replace("${oci_database_autonomous_database.quickstart_autonomous_database.connection_urls.0.sql_dev_web_url}quickstart/sign-in/?username=QUICKSTART&r=_sdw%2F","sql-developer","")
+  value = oci_database_autonomous_database.quickstart_autonomous_database.connection_urls.0.sql_dev_web_url
 
 }
+
+output "endpoint_url" {
+
+  value = replace("${oci_database_autonomous_database.quickstart_autonomous_database.connection_urls.0.sql_dev_web_url}","/ords/sql-developer","")
+
+}
+
 
 output "autonomous_database_password" {
   value = random_string.password.result
@@ -25,5 +32,5 @@ output "dev" {
 }
 
 output "lb_ip" {
-  value = "Made with \u2764 by the Oracle Database Development Tools Folks"
+  value = oci_load_balancer_load_balancer.webapp_load_balancer.ip_address_details.0.ip_address
 }

@@ -11,19 +11,16 @@ resource "tls_private_key" "compute_ssh_key" {
 # Create Compute Instance
 
 resource "oci_core_instance" "compute_instance1" {
-#  availability_domain = data.oci_identity_availability_domains.ads.availability_domains[var.availability_domain - 2]["name"]
   availability_domain = data.oci_identity_availability_domains.ads.availability_domains[0].name
   compartment_id      = var.compartment_ocid
   display_name        = "App-Server-1"
-  shape               = var.instance_shape
+  shape               = "VM.Standard.A1.Flex"
+	shape_config {
+		memory_in_gbs = "6"
+		ocpus = "1"
+	}
 
-#  dynamic "shape_config" {
-#    for_each = local.is_flexible_node_shape ? [1] : []
-#    content {
-#      memory_in_gbs = var.instance_flex_shape_memory
-#      ocpus = var.instance_flex_shape_ocpus
-#    }
-#  }
+
 
   fault_domain        = "FAULT-DOMAIN-1"
 
@@ -36,16 +33,14 @@ resource "oci_core_instance" "compute_instance1" {
   create_vnic_details {
     assign_public_ip = true
     subnet_id = oci_core_subnet.public_subnet.id
-#     nsg_ids = [oci_core_network_security_group.WebSecurityGroup.id, oci_core_network_security_group.SSHSecurityGroup.id]
   }
 
   metadata = {
     ssh_authorized_keys = tls_private_key.compute_ssh_key.public_key_openssh
-    #user_data = data.template_cloudinit_config.cloud_init.rendered
   }
 
   timeouts {
-    create = "60m"
+    create = "10m"
   }
 }
 

@@ -20,11 +20,11 @@ resource "oci_database_autonomous_database" "quickstart_autonomous_database" {
         compartment_id = var.compartment_ocid
         cpu_core_count = "1"
         data_storage_size_in_tbs = "1"
-        db_name = "QUIKDB"
+        db_name = "FLASKDB"
 
         admin_password = random_string.password.result
         db_workload = "DW"
-        display_name = "QUIKDB"
+        display_name = "FLASKDB"
         is_free_tier ="true"
         license_model = "LICENSE_INCLUDED"
         #is_access_control_enabled = "false"
@@ -95,7 +95,7 @@ resource "local_file" "autonomous_data_warehouse_wallet_file" {
 resource "oci_database_tools_database_tools_connection" "test_database_tools_connection" {
     #Required
     compartment_id = var.compartment_ocid
-    display_name = "QUIKDB DB Tools Connection"
+    display_name = "FLASKDB DB Tools Connection"
     type = "ORACLE_DATABASE"
     connection_string = oci_database_autonomous_database.quickstart_autonomous_database.connection_strings.0.profiles.0.value
 
@@ -124,10 +124,9 @@ resource "null_resource" "sqlcl-load-data" {
 
         provisioner "local-exec" {    
             command = <<-EOT
-                wget https://download.oracle.com/otn_software/java/sqldeveloper/sqlcl-latest.zip
-                unzip sqlcl-latest.zip
-                sed -i 's/NEW_PASSWORD/${random_string.password.result}/g' ./db_scripts/new_password.sql
-                ./sqlcl/bin/sql -cloudconfig wallet.zip admin/${random_string.password.result}@QUIKDB_high @./db_scripts/quickstart.sql
+                JAVA_HOME=/usr/lib/jvm/java-11-openjdk-11.0.15.0.9-2.0.1.el7_9.x86_64
+                export JAVA_HOME
+                sql -cloudconfig wallet.zip admin/${random_string.password.result}@FLASKDB_high @./db_scripts/quickstart.sql
             EOT
         }
 

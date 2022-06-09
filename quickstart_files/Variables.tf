@@ -25,7 +25,8 @@ variable "linux_os_version" {
 }
 
 variable "instance_shape" {
-   default = "VM.Standard.E2.1.Micro"
+#   default = "VM.Standard.E2.1.Micro"
+  default = "VM.Standard.A1.Flex"  
 }
 
 variable "instance_flex_shape_ocpus" {

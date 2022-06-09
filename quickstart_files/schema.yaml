@@ -63,20 +63,16 @@ outputs:
   generated_private_key_pem:
     type: string
     title: "Private SSH Key"
-    displayText: ${Messages.solutionsHub.solutions.ordsModernAppDev.outputs.generatedPrivateKeyPemDescription()}
     visible: true
 
   autonomous_database_password:
     type: string
     title: "Database Password"
-    displayText: ${Messages.solutionsHub.solutions.ordsModernAppDev.outputs.autonomousDatabasePasswordDescription()}
     visible: true
 
   lb_ip:
-
     title: "Load Balancer IP Address"
-    displayText: ${Messages.solutionsHub.solutions.autoscalingQuickstarts.outputs.loadbalancer_public_url.displayText()}
     type: string
     visible: true
 
-primaryOutputButton: loadbalancer_public_url
+primaryOutputButton: lb_ip
